@@ -58,7 +58,7 @@ const levels = [
     ],
     // Tambahkan level lainnya
 ];
-function loadLevels() {
+async function loadLevels() {
     const levelsContainer = document.getElementById('levels');
     levelsContainer.innerHTML = '';
 
@@ -100,6 +100,7 @@ document.getElementById('submit-answer').addEventListener('click', () => {
         document.getElementById('result').textContent = 'Jawaban Benar!';
         document.getElementById('result').style.color = 'green';
         score++;
+        saveProgress();
         setTimeout(() => {
             currentQuestionIndex++;
 
@@ -162,34 +163,41 @@ function showLevelUpNotification(completedLevel, nextLevel) {
     });
 }
 
-function saveProgress() {
+async function saveProgress() {
     const progress = {
         unlockedLevels,
         score
     };
-    localStorage.setItem(username, JSON.stringify(progress));
+    await fetch('/saveProgress', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username,
+            progress
+        }),
+    });
 }
 
-function loadProgress() {
-    const savedProgress = localStorage.getItem(username);
-    if (savedProgress) {
-        const progress = JSON.parse(savedProgress);
+async function loadProgress() {
+    const response = await fetch(`/loadProgress?username=${username}`);
+    const progress = await response.json();
+    if (progress) {
         unlockedLevels = progress.unlockedLevels || 1;
         score = progress.score || 0;
     }
 }
 
-// Tombol untuk memulai game
 document.getElementById('start-game-button').addEventListener('click', () => {
     document.getElementById('start-screen').classList.add('hidden');
     document.getElementById('levels-container').classList.remove('hidden');
 });
 
-// Tombol login
-document.getElementById('login-button').addEventListener('click', () => {
+document.getElementById('login-button').addEventListener('click', async () => {
     username = document.getElementById('username').value.trim();
     if (username) {
-        loadProgress();
+        await loadProgress();
         document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('start-screen').classList.remove('hidden');
     } else {
@@ -197,5 +205,4 @@ document.getElementById('login-button').addEventListener('click', () => {
     }
 });
 
-// Memulai game dengan memuat level yang tersedia
 loadLevels();

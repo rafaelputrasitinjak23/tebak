@@ -1,0 +1,14 @@
+{
+  "name": "tebak-tebakan-seru",
+  "version": "1.0.0",
+  "description": "Game tebak-tebakan seru dengan level dan penyimpanan skor menggunakan Express.js dan JSON.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Author Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
