@@ -3,22 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Tebak-Tebakan</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Tebak-Tebakan Seru</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
-        <h1>Tebak-Tebakan Seru</h1>
-        <div id="question-container">
-            <p id="question">Pertanyaan akan muncul di sini</p>
-        </div>
-        <input type="text" id="answer-input" placeholder="Jawaban Anda...">
-        <button id="submit-answer">Submit Jawaban</button>
-        <button id="hint-button">Minta Hint</button>
-        <button id="give-up-button">Menyerah</button>
-        <p id="result"></p>
-        <p id="hint"></p>
+    <!-- Layar Login -->
+    <div id="login-screen" class="screen">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Masukkan Nama Anda">
+        <button id="login-button" class="main-button">Masuk</button>
     </div>
+
+    <!-- Layar Pembuka -->
+    <div id="start-screen" class="screen hidden">
+        <img src="logo.png" alt="Game Logo" id="game-logo">
+        <h1 id="game-title">Tebak-Tebakan Seru</h1>
+        <button id="start-game-button" class="main-button">Mulai Game</button>
+    </div>
+
+    <!-- Kontainer Level -->
+    <div id="levels-container" class="screen hidden">
+        <h2>Pilih Level</h2>
+        <div id="levels"></div>
+    </div>
+
+    <!-- Kontainer Pertanyaan -->
+    <div id="question-container" class="screen hidden">
+        <p id="question"></p>
+        <input type="text" id="answer-input" placeholder="Ketik jawaban...">
+        <button id="submit-answer" class="main-button">Kirim Jawaban</button>
+        <p id="result"></p>
+        <button id="hint-button" class="secondary-button">Tunjukkan Petunjuk</button>
+        <p id="hint"></p>
+        <button id="give-up-button" class="secondary-button">Menyerah</button>
+    </div>
+
+    <!-- Pemberitahuan Naik Level -->
+    <div id="level-up-notification" class="screen hidden">
+        <h2>Selamat!</h2>
+        <p>Anda telah menyelesaikan Level <span id="completed-level"></span>!</p>
+        <p>Level <span id="next-level"></span> sekarang terbuka.</p>
+        <button id="continue-button" class="main-button">Lanjutkan</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
