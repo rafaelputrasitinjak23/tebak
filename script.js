@@ -179,7 +179,6 @@ async function saveProgress() {
         }),
     });
 }
-
 async function loadProgress() {
     const response = await fetch(`/loadProgress?username=${username}`);
     const progress = await response.json();
