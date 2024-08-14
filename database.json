@@ -1,1 +1,10 @@
-{}
+{
+  "player1": {
+    "unlockedLevels": 2,
+    "score": 18
+  },
+  "player2": {
+    "unlockedLevels": 3,
+    "score": 27
+  }
+}
