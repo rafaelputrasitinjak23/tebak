@@ -13,6 +13,10 @@ const databasePath = path.join(__dirname, 'database.json');
 
 // Load progress
 // Load progress
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('/loadProgress', (req, res) => {
     const username = req.query.username;
 
